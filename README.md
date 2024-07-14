@@ -20,6 +20,10 @@
  ```
  docker-compose uo -d
  ```
+ 5. reconstruction db with seed
+ ```
+ http://localhost:3000/api/v2/seed
+ ```
 
  ## Stack
  * MongoDB

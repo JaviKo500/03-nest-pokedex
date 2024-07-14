@@ -19,8 +19,6 @@ export class PokemonService {
       const pokemon = await this.pokemonModel.create( createPokemonDto );
       return pokemon;
     } catch (error) {
-      console.log('<--------------- JK Pokemon.service --------------->');
-      console.log(error);
       if ( error.code === 11000 ) {
         throw new BadRequestException( `Pokemon exist in db ${ JSON.stringify( error?.keyValue ) }` );
       }

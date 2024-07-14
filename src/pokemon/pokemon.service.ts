@@ -52,8 +52,14 @@ export class PokemonService {
     return pokemon;
   }
 
-  update(id: number, updatePokemonDto: UpdatePokemonDto) {
-    return `This action updates a #${id} pokemon`;
+  async update(query: string, updatePokemonDto: UpdatePokemonDto) {
+    const pokemon = await this.findOne( query );
+    if ( !pokemon ) throw new NotFoundException( `pokemon whit query "${query}" not found` );
+    if ( updatePokemonDto.name ) {
+      updatePokemonDto.name = updatePokemonDto.name.toLowerCase();
+    }
+    await pokemon.updateOne( updatePokemonDto, { new: true });
+    return { ...pokemon.toJSON(), ...updatePokemonDto };
   }
 
   remove(id: number) {

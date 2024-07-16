@@ -20,7 +20,9 @@
  ```
  docker-compose uo -d
  ```
- 5. reconstruction db with seed
+ 5. cloned a env template __.env.template_ rename file __.env__
+
+ 6. reconstruction db with seed
  ```
  http://localhost:3000/api/v2/seed
  ```

@@ -9,7 +9,7 @@ import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
 import { ConfigModule } from '@nestjs/config';
 import { EnvConfiguration } from './config/env.config';
-import { JoiValidationSchema } from './config/joi.validaton';
+import { JoiValidationSchema } from './config/validation';
 
 
 @Module({
@@ -24,7 +24,10 @@ import { JoiValidationSchema } from './config/joi.validaton';
       rootPath: join(__dirname, '..', 'public')
     }),
     MongooseModule.forRoot(
-      'mongodb://localhost:27017/nest-pokemon',
+      EnvConfiguration().mongoDb,
+      {
+        dbName: 'pokemonDb',
+      }
     ),
     PokemonModule,
     CommonModule,
